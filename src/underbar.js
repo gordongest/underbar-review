@@ -98,7 +98,6 @@
 
     // return new array
     return results;
-
   };
 
   // Return all elements of an array that don't pass a truth test.
@@ -109,10 +108,10 @@
     let results = [];
 
     // iterate over the input array
-    _.each(collection, function(item) {
+    _.each( collection, function(item) {
       // call test on each element
       if ( !test(item) ) {
-        // if test is true, push element to new array
+        // if test is false, push element to new array
         results.push(item);
       }
     });
@@ -123,6 +122,17 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+
+    // declare result object
+    let hashObj = {};
+    // iterate through the input array
+    _.each( array, function(element) {
+      // test whether result object contains value of iterator called on element
+      // if not, create property in object with key equal to current element and value equal to result of test
+      // create array of keys
+      // return array of keys
+    });
+
   };
 
 
