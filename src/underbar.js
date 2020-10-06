@@ -105,6 +105,20 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+
+    let results = [];
+
+    // iterate over the input array
+    _.each(collection, function(item) {
+      // call test on each element
+      if ( !test(item) ) {
+        // if test is true, push element to new array
+        results.push(item);
+      }
+    });
+
+    // return new array
+    return results;
   };
 
   // Produce a duplicate-free version of the array.
