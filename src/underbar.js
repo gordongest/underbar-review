@@ -81,8 +81,23 @@
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
 
+    // take in array and iterator
+    // returns new array with elements that pass test
 
+    // declare new array
+    let results = [];
 
+    // iterate over the input array
+    _.each(collection, function(item) {
+      // call test on each element
+      if ( test(item) ) {
+        // if test is true, push element to new array
+        results.push(item);
+      }
+    });
+
+    // return new array
+    return results;
 
   };
 
