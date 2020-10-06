@@ -205,6 +205,25 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+
+    if (accumulator === undefined) {
+      // use first!
+      accumulator = _.first(collection);
+      for (let i = 1; i < collection.length; i++) {
+        accumulator += iterator(collection[i]);
+      }
+    } else {
+      _.each(collection, function(item) {
+        accumulator += iterator(item);
+      });
+    }
+
+    // set acumulaterExists = to true
+    // call iterator on each item in collection
+    // increment accumulator with result of iterator called on item
+
+    return accumulator;
+
   };
 
   // Determine if the array or object contains a given value (using `===`).
