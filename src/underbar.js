@@ -48,7 +48,8 @@
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
-    if (Array.isArray(collection)) {
+
+    if ( Array.isArray(collection) ) {
       for (let i = 0; i < collection.length; i++) {
         iterator(collection[i], i, collection);
       }
@@ -102,9 +103,9 @@
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
     let results = [];
-    
-    _.each(collection, function(value) {
-      results.push(iterator(value));
+
+    _.each(collection, (value) => {
+      results.push( iterator(value) );
     });
 
     return results;
@@ -217,21 +218,26 @@
     // TIP: These variables are stored in a "closure scope" (worth researching),
     // so that they'll remain available to the newly-generated function every
     // time it's called.
-    var alreadyCalled = false;
-    var result;
-
     // TIP: We'll return a new function that delegates to the old one, but only
-    // if it hasn't been called before.
+
+    // declare result variable
+    let result;
+    // create a boolean flag on function call status
+    let alreadyCalled = false;
+
+    //return new function
     return function() {
+    // initiate conditional
+      // if function has NOT been called
       if (!alreadyCalled) {
-        // TIP: .apply(this, arguments) is the standard way to pass on all of the
-        // infromation from one function call to another.
+        // invoke function and store result
         result = func.apply(this, arguments);
         alreadyCalled = true;
       }
-      // The new function always returns the originally computed result.
+      // else return result
       return result;
     };
+
   };
 
   // Memorize an expensive function's results by storing them. You may assume
