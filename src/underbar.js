@@ -123,16 +123,32 @@
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
 
+    let results = [];
     // declare result object
     let hashObj = {};
     // iterate through the input array
-    _.each( array, function(element) {
-      // test whether result object contains value of iterator called on element
-      // if not, create property in object with key equal to current element and value equal to result of test
-      // create array of keys
-      // return array of keys
-    });
 
+    if (isSorted) {
+      _.each( array, function(element) {
+        // test whether result object contains value of iterator called on element
+        if ( hashObj[iterator(element)] === undefined ) {
+        // if not, create property in object with key equal to current element and value equal to result of test
+          hashObj[iterator(element)] = element;
+          results.push(element);
+        }
+      });
+    } else {
+      _.each( array, function(element) {
+        // test whether result object contains value of iterator called on element
+        if ( hashObj[element] === undefined ) {
+        // if not, create property in object with key equal to current element and value equal to result of test
+          hashObj[element] = element;
+          results.push(element);
+        }
+      });
+    }
+
+    return results;
   };
 
 
