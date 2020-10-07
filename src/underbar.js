@@ -205,22 +205,19 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    console.log(arguments);
 
     if (accumulator === undefined) {
-      // use first!
+
       accumulator = _.first(collection);
       for (let i = 1; i < collection.length; i++) {
-        accumulator += iterator(collection[i]);
+        accumulator = iterator(accumulator, collection[i]);
       }
     } else {
       _.each(collection, function(item) {
-        accumulator += iterator(item);
+        accumulator = iterator(accumulator, item);
       });
     }
-
-    // set acumulaterExists = to true
-    // call iterator on each item in collection
-    // increment accumulator with result of iterator called on item
 
     return accumulator;
 
@@ -244,7 +241,7 @@
     // TIP: Try re-using reduce() here.
   };
 
-  // Determine whether any of the elements pass a truth test. If no iterator is
+  // Determine w  hether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
