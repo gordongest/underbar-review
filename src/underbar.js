@@ -378,6 +378,23 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+
+    var hashObj = {};
+
+    return function(...parameters) {
+
+      var stringified = JSON.stringify(parameters);
+
+      if ( hashObj[stringified] ) {
+        return hashObj;
+      }
+
+      let result = func(...parameters);
+      hashObj[stringified] = result;
+      return result;
+
+    };
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
