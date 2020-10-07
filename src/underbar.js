@@ -426,9 +426,20 @@
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
 
+    var copy = array.slice();
 
+    var length = array.length;
 
+    var current, random;
 
+    while (length) {
+      random = Math.floor(Math.random() * length--);
+      current = copy[length];
+      copy[length] = copy[random];
+      copy[random] = current;
+    }
+
+    return copy;
 
   };
 
